@@ -34,7 +34,7 @@ const relatedPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<BaseLayout title="Blog Posts" description={SITE_DESCRIPTION}>
+<BaseLayout title={post.data.title} description={post.data.description}>
   <div
     class="sm prose-lg prose mx-auto justify-self-end px-4 pb-8 xs:min-w-fit md:min-w-[760px]"
   >
