@@ -1,5 +1,4 @@
 ---
-import { SITE_DESCRIPTION } from '../../consts';
 import { CollectionEntry, getCollection } from 'astro:content';
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { Image } from '@astrojs/image/components';
@@ -34,7 +33,7 @@ const relatedPosts = (await getCollection('blog'))
   .slice(0, 3);
 ---
 
-<BaseLayout title="Blog Posts" description={SITE_DESCRIPTION}>
+<BaseLayout title={post.data.title} description={post.data.description}>
   <div
     class="sm prose-lg prose mx-auto justify-self-end px-4 pb-8 xs:min-w-fit md:min-w-[760px]"
   >
@@ -53,7 +52,7 @@ const relatedPosts = (await getCollection('blog'))
     </div>
 
     <Image
-      src={heroImage || ''}
+      src={heroImage}
       alt={description}
       width={1200}
       height={0}
