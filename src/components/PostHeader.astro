@@ -16,7 +16,7 @@ const { date, description, image, title, slug, tag } = Astro.props;
 
 <a href={`/blog/${slug}`}>
   <div
-    class="card image-full cursor-pointer bg-base-100 shadow-md transition-all hover:scale-[1.05] hover:shadow-2xl focus-visible:shadow-2xl"
+    class="card image-full cursor-pointer bg-base-100 shadow-md transition-all hover:scale-[1.05] hover:shadow-2xl focus-visible:shadow-2xl xs:max-w-[350px] sm:max-w-full sm:card-compact"
   >
     <figure>
       <Image

@@ -21,14 +21,27 @@ export interface Props {
 const { post } = Astro.props;
 const { description, heroImage, pubDate } = post.data;
 const { Content } = await post.render();
+
+type Post = CollectionEntry<'blog'>;
+
+const relatedPosts = (await getCollection('blog'))
+  .reduce((acc: Post[], currPost) => {
+    if (currPost.data.tags === post.data.tags) {
+      acc.push(currPost);
+    }
+    return acc;
+  }, [])
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Blog Posts" description={SITE_DESCRIPTION}>
-  <div class="prose mx-auto px-4">
+  <div
+    class="sm prose mx-auto justify-self-end px-4 xs:min-w-fit md:min-w-[760px]"
+  >
     <div class="mx-4">
-      <h2 class="mb-2 p-0">
+      <h1 class="mb-2 p-0 uppercase xs:text-3xl sm:text-4xl">
         {post.data.title}
-      </h2>
+      </h1>
       <date>
         {
           pubDate.toLocaleString('en-US', {
